@@ -125,6 +125,15 @@ function editLivro(livro) {
         <input type="file" @change="onFileChange" accept="image/png, image/jpeg">
         <button type="submit">Salvar</button>
       </form>
+      <form @submit.prevent="saveCategoria">
+        <input v-model="currentCategoria.descricao" placeholder="Descricao">
+        <button type="submit">Salvar Categoria</button>
+      </form>
+      <form @submit.prevent="saveEditora">
+        <input v-model="currentEditora.nome" placeholder="Nome">
+        <input v-model="currentEditora.site" type="url" placeholder="Site">
+        <button type="submit">Salvar Editora</button>
+      </form>
 
       <h1 class="Title">Livros no Acervo</h1>
       <div class="bookWeek">
