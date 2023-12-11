@@ -1,45 +1,116 @@
 <template>
-    <div class="main">
-        <div class="CardsView">
-            <div class="NoticiaCard">
-                <div class="NoticiaImgBox">
-                    <img class="NoticiaImg" src="../assets/imgs/biblioteca-sa-corredor.jpg">
-                </div>
-                <div class="NoticiaText">
-                    <h1>Bem-vindo ao Tesouro do Conhecimento: Explore o Acervo da Biblioteca UFPR</h1>
-                    <p class="text"> Descubra um universo de sabedoria e cultura na Biblioteca da Universidade Federal do Paraná (UFPR). Nosso acervo é um testemunho vivo da riqueza intelectual, abrangendo diversas disciplinas e oferecendo uma fonte inesgotável de recursos para estudantes, pesquisadores e entusiastas do aprendizado.</p>
-                    <h2>Explorando o Acervo:</h2>
-                    <p>Em nosso site, você encontrará uma vasta coleção de obras que abrange desde clássicos atemporais até as mais recentes publicações acadêmicas. Navegue por categorias, explore coleções especiais e mergulhe em volumes que representam séculos de conhecimento acumulado.</p>
-                    <h2>Riqueza Cultural em Suas Mãos:</h2>
-                    <p>O acervo da Biblioteca UFPR vai além dos limites da educação formal. Oferecemos uma gama diversificada de recursos, incluindo obras raras, documentos históricos e exposições virtuais que proporcionam uma imersão única na riqueza cultural e intelectual.</p>
-                </div>
-            </div>
-              
-        </div>
+    <div class="borrowed-books">
+      <h1>Listagem de Empréstimos</h1>
+  
+      <!-- Tabela de Empréstimos -->
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Livro Emprestado</th>
+            <th>Data de Devolução</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(borrower, index) in borrowers" :key="index">
+            <td>{{ borrower.name }}</td>
+            <td>{{ borrower.cpf }}</td>
+            <td>{{ borrower.borrowedBook }}</td>
+            <td>{{ borrower.returnDate }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Formulário de Adição de Empréstimo -->
+      <form @submit.prevent="addBorrower">
+        <h2>Adicionar Empréstimo</h2>
+        <label for="name">Nome:</label>
+        <input v-model="newBorrower.name" required style="width: 100%;">
+  
+        <label for="cpf">CPF:</label>
+        <input v-model="newBorrower.cpf" required style="width: 100%;">
+  
+        <label for="borrowedBook">Livro Emprestado:</label>
+        <input v-model="newBorrower.borrowedBook" required style="width: 100%;">
+  
+        <label for="returnDate">Data de Devolução:</label>
+        <input type="date" v-model="newBorrower.returnDate" required style="width: 100%;">
+  
+        <button type="submit">Adicionar</button>
+      </form>
     </div>
-</template>
-<style scoped>
-.NoticiaImg{
+  </template>
+  
+  <script setup>
+  import { ref } from 'vue';
+  
+  const borrowers = ref([
+    { name: 'João Silva', cpf: '123.456.789-00', borrowedBook: 'A Arte da Guerra', returnDate: '2023-01-31' },
+    { name: 'Maria Souza', cpf: '987.654.321-00', borrowedBook: 'Dom Quixote', returnDate: '2023-02-15' },
+  ]);
+  
+  const newBorrower = ref({
+    name: '',
+    cpf: '',
+    borrowedBook: '',
+    returnDate: '',
+  });
+  
+  const addBorrower = () => {
+    if (newBorrower.value.name && newBorrower.value.cpf && newBorrower.value.borrowedBook && newBorrower.value.returnDate) {
+      borrowers.value.push({ ...newBorrower.value });
+      newBorrower.value = { name: '', cpf: '', borrowedBook: '', returnDate: '' };
+    } else {
+      alert('Por favor, preencha todos os campos.');
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .borrowed-books {
+    padding: 20px;
+  }
+  
+  table {
     width: 100%;
-    height: 100%;
-}
-.NoticiaImgBox{
-    width: 50%;
-}
-.CardsView{
-    padding: 5% 8%;
-}
-.NoticiaCard{
-    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  form {
+    margin-top: 20px;
     display: flex;
-    outline: 1px solid #0b5394;
-    border-radius: 0.4vh;
-    background-color: #f1f1f1;
-    margin: 2% 0%;
-}
-.NoticiaText{
-    min-width: 50%;
-    width: 60%;
-    padding: 0 1%;
-}
-</style>
+    flex-direction: column;
+    max-width: 400px;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  </style>
+  
