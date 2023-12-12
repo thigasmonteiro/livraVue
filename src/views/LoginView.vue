@@ -30,7 +30,7 @@
     // Simulação de autenticação
     if (username.value === 'admin' && password.value === 'password') {
       store.commit('login', username.value);
-      router.push('/dashboard'); // Redireciona para a rota protegida
+      router.push('/H'); // Redireciona para a rota protegida
     } else {
       alert('Usuário ou senha incorretos.');
     }

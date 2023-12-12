@@ -5,7 +5,7 @@
     <nav>
       <div class="nav-container">
         <div class="nav-logo">
-          <img class="logo" src="./assets/imgs/biblioteca-sa-corredor.jpg" alt="Logo">
+          <img class="logo" src="https://images.vexels.com/media/users/3/229082/isolated/preview/6fabc24c3830d75486725cc6d786dfbb-logotipo-dos-circulos-do-livro.png" alt="Logo">
         </div>
         <div class="nav-links">
           <router-link to="/">Home</router-link>
@@ -26,15 +26,17 @@
 
 <style scoped>
 header {
-  background-color: #2c3e50;
-  color: #ecf0f1;
+  background-color: #2911f1;
+  color: #ffffff;
   padding: 1.5rem 0;
+  font-weight: bold;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .nav-container {

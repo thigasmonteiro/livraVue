@@ -2,7 +2,6 @@
     <div class="borrowed-books">
       <h1>Listagem de Empréstimos</h1>
   
-      <!-- Tabela de Empréstimos -->
       <table>
         <thead>
           <tr>
@@ -22,7 +21,6 @@
         </tbody>
       </table>
   
-      <!-- Formulário de Adição de Empréstimo -->
       <form @submit.prevent="addBorrower">
         <h2>Adicionar Empréstimo</h2>
         <label for="name">Nome:</label>
@@ -68,8 +66,13 @@
   </script>
   
   <style scoped>
+  body {
+    background-color: #2296F0;
+  }
   .borrowed-books {
     padding: 20px;
+    background-color: #2296F0;
+    color:#fff ;
   }
   
   table {
@@ -82,6 +85,8 @@
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    color: #000000;
+    font-size: 30px;
   }
   
   th {
@@ -113,4 +118,3 @@
     cursor: pointer;
   }
   </style>
-  

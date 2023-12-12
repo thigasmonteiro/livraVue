@@ -99,9 +99,6 @@ async function deleteLivro(livro) {
   isLoading.value = false
 }
 
-function editLivro(livro) {
-  currentLivro.value = { ...livro }
-}
 </script>
 
 
@@ -154,7 +151,6 @@ function editLivro(livro) {
         </form>
       </div>
 
-      <!-- Formulário para adicionar categorias -->
       <div class="form">
         <form @submit.prevent="saveCategoria">
           <div class="input-col">
@@ -167,7 +163,6 @@ function editLivro(livro) {
         </form>
       </div>
 
-      <!-- Formulário para adicionar editoras -->
       <div class="form">
         <form @submit.prevent="saveEditora">
           <div class="input-col">
@@ -229,7 +224,7 @@ select {
 
 button {
   padding: 1rem;
-  background-color: #f89c3c;
+  background-color: #4caf50;
   color: white;
   border: none;
   cursor: pointer;
@@ -244,7 +239,7 @@ button:hover {
 
 .bookform {
   padding: 2% 15%;
-  background-color: #0b5394;
+  background-color: #2296F0;
   margin-bottom: 2%;
 }
 
@@ -278,6 +273,7 @@ button:hover {
 
 .main {
   width: 100%;
+  background-color: #3498db;
 }
 
 .bookWeek {
@@ -286,5 +282,6 @@ button:hover {
   flex-wrap: wrap;
   padding: 0% 15%;
   gap: 2%;
+  
 }
 </style>
