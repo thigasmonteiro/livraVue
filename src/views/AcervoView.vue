@@ -186,9 +186,9 @@ async function deleteLivro(livro) {
       <div v-for="livro in livros" :key="livro.id" class="bookBox">
         <img class="bookPic" :src="livro.capa.url" alt="Foto do Livro" />
         <p class="bookTitle">{{ livro.titulo }}</p>
-        <p class="bookGenre">{{ livro.isbn }}</p>
-        <p class="bookGenre">{{ livro.editora }}</p>
-        <p class="bookAuthor">{{ livro.categoria }}</p>
+        <p class="bookGenre"> ISBN :{{ livro.isbn }}</p>
+        <p class="bookGenre"> {{ livro.editora.nome }}</p>
+        <p class="bookAuthor"> Categoria:{{ livro.categoria.descricao }}</p>
         <div class="button-row">
           <button @click="deleteLivro(livro)" class="delete-button">Deletar Livro</button>
         </div>
@@ -278,7 +278,7 @@ button:hover {
 
 .bookWeek {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0% 15%;
   gap: 2%;
