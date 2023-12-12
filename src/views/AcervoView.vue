@@ -60,7 +60,8 @@ async function save() {
     titulo: '',
     isbn: '',
     categoria: '',
-    editora: ''
+    editora: '',
+    quantidade: ''
   })
   const data = await LivroService.getAllLivros()
   livros.value = data
@@ -98,10 +99,7 @@ async function deleteLivro(livro) {
   livros.value = data
   isLoading.value = false
 }
-
 </script>
-
-
 
 <template>
   <Loading v-model:active="isLoading" is-full-page class="loading" />
@@ -118,6 +116,10 @@ async function deleteLivro(livro) {
             <div class="input-col">
               <label for="isbn">ISBN:</label>
               <input v-model="currentLivro.isbn" type="number" placeholder="ISBN" />
+            </div>
+            <div class="input-col">
+              <label for="isbn">antd:</label>
+              <input v-model="currentLivro.quantidade" type="number" placeholder="qntd" />
             </div>
             <div class="input-col">
               <label for="categoria">Categoria:</label>
@@ -139,7 +141,7 @@ async function deleteLivro(livro) {
             </div>
             <div class="input-col file-input">
               <label for="capa">Capa:</label>
-              <input type="file" @change="onFileChange" accept="image/png, image/jpeg">
+              <input type="file" @change="onFileChange" accept="image/png, image/jpeg" />
             </div>
           </div>
           <div id="preview" v-if="coverUrl">
@@ -184,11 +186,11 @@ async function deleteLivro(livro) {
     <h1 class="Title">Livros no Estoque</h1>
     <div class="bookWeek">
       <div v-for="livro in livros" :key="livro.id" class="bookBox">
-        <img class="bookPic" :src="livro.capa.url" alt="Foto do Livro" />
+        <img class="bookPic" v-bind:src="livro.capa.file" alt="Foto do Livro" />
         <p class="bookTitle">{{ livro.titulo }}</p>
-        <p class="bookGenre"> ISBN :{{ livro.isbn }}</p>
-        <p class="bookGenre"> {{ livro.editora.nome }}</p>
-        <p class="bookAuthor"> Categoria:{{ livro.categoria.descricao }}</p>
+        <p class="bookGenre">ISBN :{{ livro.isbn }}</p>
+        <p class="bookGenre">{{ livro.editora.nome }}</p>
+        <p class="bookAuthor">Categoria:{{ livro.categoria.descricao }}</p>
         <div class="button-row">
           <button @click="deleteLivro(livro)" class="delete-button">Deletar Livro</button>
         </div>
@@ -200,7 +202,7 @@ async function deleteLivro(livro) {
 <style scoped>
 .input-col {
   margin-bottom: 1.5rem;
-  color:#fff;
+  color: #fff;
   font-size: 20px;
   font-weight: bold;
 }
@@ -213,7 +215,6 @@ select {
   width: 100%;
   box-sizing: border-box;
   margin: 5px;
-
 }
 
 .button-row {
@@ -234,12 +235,11 @@ button {
 button:hover {
   background-color: #000000;
   transition: all 0.2s ease-in-out;
-  
 }
 
 .bookform {
   padding: 2% 15%;
-  background-color: #2296F0;
+  background-color: #2296f0;
   margin-bottom: 2%;
 }
 
@@ -282,6 +282,5 @@ button:hover {
   flex-wrap: wrap;
   padding: 0% 15%;
   gap: 2%;
-  
 }
 </style>
